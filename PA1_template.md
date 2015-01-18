@@ -137,3 +137,19 @@ ggplot(sumimp, aes(steps))+geom_histogram(binwidth=998, color="black", fill="red
 ![plot of chunk unnamed-chunk-15](PA1_template_files/figure-html/unnamed-chunk-15.png) 
 
 ## Are there differences in activity patterns between weekdays and weekends?
+We need to add a new column to our amended dataset that designates the type of day. First we enter the day of the week and then convert it into a "weekday" or a "weekend".
+
+```r
+actimp$datetype<-weekdays(actimp$date)
+actimp$datetype<-ifelse(actimp$datetype %in% c("Monday","Tuesday","Wednesday","Thursday","Friday"), "Weekday", "Weekend")
+```
+Using two charts that plot step frequency over intervals, we can better compare movement data between weekdays and weekends.
+
+```r
+meanactimp<-aggregate(steps ~ interval + datetype, actimp, mean, na.action=na.pass, na.rm=TRUE)
+ggplot(meanactimp, aes(interval, steps))+geom_line()+facet_wrap(~ datetype, ncol=1)+xlab("Interval")+ylab("Steps")
+```
+
+![plot of chunk unnamed-chunk-17](PA1_template_files/figure-html/unnamed-chunk-17.png) 
+
+We can observe that there is more movement interspersed throughout the day on the weekends, and that there is less of a peak near 800-900 as there is during the weekday.
