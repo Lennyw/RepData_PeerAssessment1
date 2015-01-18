@@ -42,7 +42,7 @@ To build our histogram, we use ggplot and add a red dashed line for our mean and
 
 ```r
 library(ggplot2)
-ggplot(sumsteps, aes(x=steps)) + geom_histogram(binwidth=1000, color="black", fill="white")+geom_vline(aes(xintercept=mean(steps, na.rm=TRUE)), color="red", linetype="dashed", size=1)+geom_vline(aes(xintercept=median(steps, na.rm=TRUE)), color="blue", linetype="dashed", size=1)
+ggplot(sumsteps, aes(x=steps)) + geom_histogram(binwidth=998, color="black", fill="white")+geom_vline(aes(xintercept=mean(steps, na.rm=TRUE)), color="red", linetype="dashed", size=1)+geom_vline(aes(xintercept=median(steps, na.rm=TRUE)), color="blue", linetype="dashed", size=1)
 ```
 
 ![plot of chunk unnamed-chunk-5](PA1_template_files/figure-html/unnamed-chunk-5.png) 
